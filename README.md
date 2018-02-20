@@ -1,5 +1,9 @@
+## PySchool Analysis:
+- The school size and spending per student seems correlate. The larger the school size the lower passing rates and mean scores.
+- Charter school has better performing than the district school. The top 5 perfroming schools are charter schools, and the bottom 5 are the district schools. 
+- Accoring to the math scores by grade and the reading scores by grade, you can see their mean scores stay consistent across grades. 
 
-
+## District summary
 ```python
 # import files, create dataframe
 import pandas as pd
@@ -12,10 +16,6 @@ school_df = school_df.rename(columns={"name":"school"})
 school_df.head
 
 ```
-
-
-
-
     <bound method NDFrame.head of     School ID                 school      type  size   budget
     0           0      Huang High School  District  2917  1910635
     1           1   Figueroa High School  District  2949  1884411
@@ -32,10 +32,6 @@ school_df.head
     12         12    Johnson High School  District  4761  3094650
     13         13       Ford High School  District  2739  1763916
     14         14     Thomas High School   Charter  1635  1043130>
-
-
-
-
 ```python
 # District Summary
 total_school = school_df["school"].count()
@@ -133,7 +129,7 @@ district_df
 
 
 
-
+## School Summary
 ```python
 # set school as index in school_df, get the total budget, and type of schools
 school_index = school_df.set_index("school")
@@ -285,7 +281,7 @@ sch_summary.head()
 
 
 
-
+## Top Performing Schools (By Passing Rate)
 ```python
 #Top Performing Schools (By Passing Rate)
 top_performing = sch_summary.sort_values(["% Overall Passing Rate"],ascending = False)
@@ -390,7 +386,7 @@ top_performing.head(5)
 </div>
 
 
-
+## Bottom Performing Schools (By Passing Rate)
 
 ```python
 #Bottom Performing Schools (By passing Rate)
@@ -497,7 +493,7 @@ bottom_performing.head(5)
 
 
 
-
+## Math scores by grade
 ```python
 #Math Scores by Grade
 ninth = student_df.loc[student_df["grade"]=='9th'].groupby("school")
@@ -594,7 +590,7 @@ math_grade.head()
 
 
 
-
+## Reading Scores by Grade
 ```python
 #Reading Score by Grade
 nine = student_df.loc[student_df["grade"]=='9th'].groupby("school")
@@ -691,7 +687,7 @@ reading_grade.head()
 
 
 
-
+## Scores by School Spending
 ```python
 #Scores by School Spending
 score_summary = pd.DataFrame(sch_summary)
@@ -790,7 +786,7 @@ score_spending
 
 
 
-
+## Scores by School Size
 ```python
 sch_size=pd.DataFrame(sch_summary)
 #rename total students to "School Size"
@@ -877,7 +873,7 @@ size_score
 
 
 
-
+## Scores by School Type
 ```python
 #groupby school type
 group_type = sch_summary.groupby(["School Type"])
